@@ -18,6 +18,16 @@ const App = () => {
 		localStorage.setItem("details", JSON.stringify(localDatabase));
 	}, [contacts, appointments]);
 
+	function sortObjectList(arr, keyName, number = false) {
+		return arr.sort(({ [keyName]: val1 }, { [keyName]: val2 }) => {
+			[val1, val2] = number // check if it's a number
+				? [parseFloat(val1), parseFloat(val2)] // convert to number
+				: [val1.toUpperCase(), val2.toUpperCase()]; // convert to upperCase string
+
+			return val1 < val2 ? -1 : val1 > val2 ? 1 : 0;
+		});
+	}
+
 	return (
 		<div>
 			<header>
@@ -46,7 +56,13 @@ const App = () => {
 				<hr />
 			</header>
 			<Outlet
-				context={[contacts, setContacts, appointments, setAppointments]}
+				context={[
+					contacts,
+					setContacts,
+					appointments,
+					setAppointments,
+					sortObjectList,
+				]}
 			/>
 		</div>
 	);

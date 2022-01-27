@@ -4,7 +4,7 @@ import ContactForm from "../components/contactForm";
 import TileList from "../components/tileList";
 
 export default function ContactsPage() {
-	const [contacts, setContacts] = useOutletContext();
+	const [contacts, setContacts, , , sortObjectList] = useOutletContext();
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
@@ -18,20 +18,6 @@ export default function ContactsPage() {
 				email,
 			},
 		]);
-	}
-
-	//TODO This sorting algorithm might be time expensive with large datasets
-	function sortContacts(arr) {
-		let names = arr.map((i) => i.name); // gather all the names
-		names = names.sort(); // sort them
-		const newArr = [];
-
-		for (let i = 0; i < arr.length; i++) {
-			let foundArray = arr.find((cur) => cur.name === names[i]);
-			newArr.push(foundArray);
-		}
-
-		return newArr;
 	}
 
 	const formatName = (words) => {
@@ -77,7 +63,7 @@ export default function ContactsPage() {
 			/>
 			<hr />
 			{contacts.length ? <h2>Contacts</h2> : <h2>No Contacts</h2>}
-			<TileList list={sortContacts(contacts)} />
+			<TileList list={sortObjectList(contacts, "name")} />
 		</>
 	);
 }

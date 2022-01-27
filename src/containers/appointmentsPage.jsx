@@ -4,7 +4,8 @@ import AppointmentForm from "../components/appointmentForm";
 import TileList from "../components/tileList";
 
 export default function AppointmentsPage() {
-	const [contacts, , appointments, setAppointments] = useOutletContext();
+	const [contacts, , appointments, setAppointments, sortObjectList] =
+		useOutletContext();
 	const [title, setTitle] = useState("");
 	const [contact, setContact] = useState("");
 	const [date, setDate] = useState("");
@@ -50,7 +51,7 @@ export default function AppointmentsPage() {
 			) : (
 				<h2>No Appointments</h2>
 			)}
-			<TileList list={appointments} />
+			<TileList list={sortObjectList(appointments, "contact")} />
 		</>
 	);
 }
