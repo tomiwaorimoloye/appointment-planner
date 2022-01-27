@@ -21,10 +21,11 @@ export default function Contact() {
 				<p>Phone Number: {currentContact.phone}</p>
 				<p>Email: {currentContact.email}</p>
 				<br />
-				<h3>Appointments</h3>
-				{relatedAppointments &&
-					relatedAppointments.map((appointment, index) => {
-						return (
+				{/* only render relate appointments if there are any */}
+				{relatedAppointments.length ? (
+					<>
+						<h3>Appointments</h3>
+						{relatedAppointments.map((appointment) => (
 							<>
 								<p>Title: {appointment.title}</p>
 								<p>Date: {appointment.date}</p>
@@ -32,11 +33,16 @@ export default function Contact() {
 								<br />
 								<br />
 							</>
-						);
-					})}
+						))}
+					</>
+				) : (
+					<small className="note">
+						{currentContact.name} has no Appointments
+					</small>
+				)}
 			</>
 		);
 	} else {
-		return <h1>Contac not found!</h1>;
+		return <h1>Contact not found!</h1>;
 	}
 }

@@ -45,7 +45,11 @@ export default function AppointmentsPage() {
 				handleSubmit={handleSubmit}
 			/>
 			<hr />
-			<h2>Appointments</h2>
+			{appointments.length ? (
+				<h2>Appointments</h2>
+			) : (
+				<h2>No Appointments</h2>
+			)}
 			<TileList list={appointments} />
 		</>
 	);

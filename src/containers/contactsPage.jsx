@@ -62,7 +62,7 @@ export default function ContactsPage() {
 				handleSubmit={handleSubmit}
 			/>
 			<hr />
-			<h2>Contacts</h2>
+			{contacts.length ? <h2>Contacts</h2> : <h2>No Contacts</h2>}
 			<TileList list={contacts} />
 		</>
 	);

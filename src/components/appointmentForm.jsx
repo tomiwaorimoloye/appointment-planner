@@ -19,6 +19,7 @@ export default function AppointmentForm({
 				placeholder="Appointment Title"
 				onChange={(e) => setTitle(e.target.value)}
 				value={title}
+				required
 			/>
 			<select
 				value={contact}
@@ -38,11 +39,13 @@ export default function AppointmentForm({
 				type="date"
 				onChange={(e) => setDate(e.target.value)}
 				value={date}
+				required
 			/>
 			<input
 				type="time"
 				onChange={(e) => setTime(e.target.value)}
 				value={time}
+				required
 			/>
 			<input type="submit" value="Add Appointment" />
 		</form>

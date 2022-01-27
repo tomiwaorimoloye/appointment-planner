@@ -1,29 +1,38 @@
 import React from "react";
 
-export default function ContactForm(props) {
+export default function ContactForm({
+	handleSubmit,
+	setName,
+	name,
+	setPhone,
+	phone,
+	setEmail,
+	email,
+}) {
 	return (
 		<>
 			<h2>Add Contact</h2>
-			<form onSubmit={props.handleSubmit}>
+			<form onSubmit={handleSubmit}>
 				<input
 					type="text"
-					onChange={(e) => props.setName(e.target.value)}
-					value={props.name}
+					onChange={(e) => setName(e.target.value)}
+					value={name}
 					placeholder="Contact Name"
 					required
 				/>
 				<input
 					type="text"
-					onChange={(e) => props.setPhone(e.target.value)}
-					value={props.phone}
+					onChange={(e) => setPhone(e.target.value)}
+					value={phone}
 					placeholder="Contact Phone (###-###-####)"
-					pattern="[1-9][0-9]{2}-[1-9][0-9]{2}-[1-9]{4}"
+					pattern="[1-9][0-9]{2}[1-9][0-9]{2}[1-9][0-9]{3}"
+					maxLength={10}
 					required
 				/>
 				<input
 					type="text"
-					onChange={(e) => props.setEmail(e.target.value)}
-					value={props.email}
+					onChange={(e) => setEmail(e.target.value)}
+					value={email}
 					placeholder="Contact Email"
 					required
 				/>

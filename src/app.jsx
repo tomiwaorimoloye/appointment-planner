@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 const App = () => {
-	const [contacts, setContacts] = useState([]);
-	const [appointments, setAppointments] = useState([]);
+	// collect data from local storage if there is
+	const [existingContacts, existingAppointments] = JSON.parse(
+		localStorage.getItem("details")
+	) || [null, null];
+	const [contacts, setContacts] = useState(existingContacts || []);
+	const [appointments, setAppointments] = useState(
+		existingAppointments || []
+	);
 
 	useEffect(() => {
-		console.log(contacts, appointments);
+		let localDatabase = [contacts, appointments];
+
+		// update the localStorage anytime a new contact/appointment is made
+		localStorage.setItem("details", JSON.stringify(localDatabase));
 	}, [contacts, appointments]);
 
 	return (

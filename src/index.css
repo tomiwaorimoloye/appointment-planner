@@ -89,6 +89,18 @@ input[type="submit"]:hover {
 	cursor: pointer;
 }
 
-.title-tile {
+.tile-container {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: repeat(3, minmax(200px, 350px));
+	justify-content: stretch;
+	gap: 1rem;
+}
+
+.tile .title-tile {
 	font-weight: bold;
+}
+
+small.note {
+	color: gray;
 }
